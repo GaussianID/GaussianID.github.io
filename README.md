@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="400" src="https://raw.githubusercontent.com/gaussian-org/.github/main/Gaussian-stroke.png" alt="Gaussian">
+  <img width="400" src="https://raw.githubusercontent.com/gaussianID/.github/main/Gaussian-stroke.png" alt="Gaussian">
 </p>
 
 <div align="center">
