@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 
@@ -14,7 +14,11 @@ export const metadata: Metadata = {
   description: "Gaussian empowers enterprises in finance, HR, supply chain, and strategy with real-time insights, automated processes, and autonomous threat defense. By combining LLM-driven digital twin technology with cyber protection, it helps safeguard critical systems while optimizing complex operations.",
   keywords: "AI, Digital Twin, Cybersecurity, LLM, Automation, Enterprise, Finance, Banking",
   authors: [{ name: "Gaussian" }],
-  viewport: "width=device-width, initial-scale=1",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
