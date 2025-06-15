@@ -51,7 +51,35 @@ jobs:
       run: pnpm install --frozen-lockfile
 
     - name: Build project
-      run: pnpm run build
+      env:
+        NODE_ENV: production
+      run: |
+        echo "Starting Next.js build..."
+        pnpm run build
+        echo "Build completed. Checking build output..."
+        ls -la
+        if [ ! -d "out" ]; then
+          echo "ERROR: out directory was not created!"
+          exit 1
+        fi
+        echo "✓ Build successful - out directory created"
+
+    - name: List build output
+      run: |
+        echo "Listing root directory:"
+        ls -la
+        echo "Checking if out directory exists:"
+        if [ -d "out" ]; then
+          echo "✓ out directory exists"
+          echo "Contents of out directory:"
+          ls -la out/
+        else
+          echo "✗ out directory does not exist"
+          echo "Contents of .next directory:"
+          ls -la .next/
+          echo "Trying to find any build output:"
+          find . -name "*.html" -o -name "index.*" | head -10
+        fi
 
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
