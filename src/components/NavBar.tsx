@@ -135,7 +135,7 @@ export const NavBar: React.FC<NavBarProps> = ({
           ${className}
         `}
       >
-        <nav className="max-w-7xl mx-auto px-4 lg:px-2">
+        <nav className="px-4 md:px-[70px]">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <Link 
@@ -254,7 +254,7 @@ export const NavBar: React.FC<NavBarProps> = ({
           boxShadow: '0px 1px 10px 0px rgba(0, 0, 0, 0.12), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 2px 4px 0px rgba(0, 0, 0, 0.2)'
         }}
       >
-        <div className="px-4 py-4">
+        <div className="px-4 md:px-[70px] py-4">
           {/* Mobile Header */}
           <div className="flex items-center justify-between mb-7">
             <Link 
