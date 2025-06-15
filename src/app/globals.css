@@ -1,26 +1,380 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --font-family-poppins: var(--font-poppins), Helvetica, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Hero Section Background Pattern */
+.hero-pattern {
+  background-image: 
+    radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 40% 60%, rgba(156, 163, 175, 0.03) 0%, transparent 50%);
+}
+
+/* Geometric shapes for hero background */
+.geometric-bg::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: 
+    linear-gradient(45deg, transparent 49%, rgba(59, 130, 246, 0.02) 50%, transparent 51%),
+    linear-gradient(-45deg, transparent 49%, rgba(59, 130, 246, 0.02) 50%, transparent 51%);
+  background-size: 60px 60px;
+  animation: float 20s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(1deg); }
+}
+
+/* Button hover effects */
+.button-hover-effect {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.button-hover-effect:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+:root {
+  --2: 0px 2px 4px 0px rgba(27, 28, 29, 0.04);
+  --3: 0px 16px 32px -12px rgba(88, 92, 95, 0.1);
+  --4: 0px 16px 40px -8px rgba(88, 92, 95, 0.16);
+  --6:
+    0px 1px 10px 0px rgba(0, 0, 0, 0.12), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 2px 4px 0px rgba(
+      0,
+      0,
+      0,
+      0.2
+    );
+  --b2-medium-font-family: var(--font-poppins), Helvetica;
+  --b2-medium-font-size: 14px;
+  --b2-medium-font-style: normal;
+  --b2-medium-font-weight: 500;
+  --b2-medium-letter-spacing: 0px;
+  --b2-medium-line-height: 129.99999523162842%;
+  --b2-regular-font-family: var(--font-poppins), Helvetica;
+  --b2-regular-font-size: 14px;
+  --b2-regular-font-style: normal;
+  --b2-regular-font-weight: 400;
+  --b2-regular-letter-spacing: 0px;
+  --b2-regular-line-height: 150%;
+  --b2-semi-bold-font-family: var(--font-poppins), Helvetica;
+  --b2-semi-bold-font-size: 14px;
+  --b2-semi-bold-font-style: normal;
+  --b2-semi-bold-font-weight: 600;
+  --b2-semi-bold-letter-spacing: 0px;
+  --b2-semi-bold-line-height: 129.99999523162842%;
+  --b3-regular-font-family: var(--font-poppins), Helvetica;
+  --b3-regular-font-size: 12px;
+  --b3-regular-font-style: normal;
+  --b3-regular-font-weight: 400;
+  --b3-regular-letter-spacing: 0px;
+  --b3-regular-line-height: 129.99999523162842%;
+  --caption-regular-font-family: var(--font-poppins), Helvetica;
+  --caption-regular-font-size: 11px;
+  --caption-regular-font-style: normal;
+  --caption-regular-font-weight: 400;
+  --caption-regular-letter-spacing: 0px;
+  --caption-regular-line-height: 129.99999523162842%;
+  --collor-style-background-white: rgba(245, 247, 250, 1);
+  --collor-style-font-primary: rgba(17, 17, 18, 1);
+  --collor-style-font-primary-duplicate: rgba(17, 17, 18, 1);
+  --collor-style-font-secondary: rgba(73, 82, 91, 1);
+  --collor-style-font-secondary-duplicate: rgba(73, 82, 91, 1);
+  --collor-style-neutral-0: rgba(255, 255, 255, 1);
+  --collor-style-neutral-0-duplicate: rgba(255, 255, 255, 1);
+  --collor-style-neutral-100: rgba(245, 247, 250, 1);
+  --collor-style-neutral-100-duplicate: rgba(245, 247, 250, 1);
+  --collor-style-primary-300: rgba(34, 97, 182, 1);
+  --collor-style-primary-300-duplicate: rgba(34, 97, 182, 1);
+  --collor-style-primary-400: rgba(23, 64, 120, 1);
+  --collor-style-primary-400-duplicate: rgba(23, 64, 120, 1);
+  --collor-style-primary-500: rgba(11, 31, 58, 1);
+  --collor-style-primary-500-duplicate: rgba(11, 31, 58, 1);
+  --collor-style-secondary-200: rgba(122, 172, 208, 1);
+  --collor-style-secondary-500: rgba(35, 71, 98, 1);
+  --collor-style-tertiary-100: rgba(200, 205, 211, 1);
+  --collor-style-tertiary-100-duplicate: rgba(200, 205, 211, 1);
+  --collor-style-tertiary-2-100: rgba(46, 156, 255, 1);
+  --collor-style-tertiary-2-200: rgba(15, 120, 248, 1);
+  --collor-style-tertiary-2-300: rgba(16, 101, 229, 1);
+  --collor-style-tertiary-2-300-duplicate: rgba(16, 101, 229, 1);
+  --collor-style-tertiary-2-400: rgba(20, 82, 185, 1);
+  --collor-style-tertiary-200: rgba(144, 155, 166, 1);
+  --collor-style-tertiary-200-duplicate: rgba(144, 155, 166, 1);
+  --collor-style-tertiary-300: rgba(94, 105, 117, 1);
+  --collor-style-tertiary-300-duplicate: rgba(94, 105, 117, 1);
+  --h2-font-family: var(--font-poppins), Helvetica;
+  --h2-font-size: 42px;
+  --h2-font-style: normal;
+  --h2-font-weight: 600;
+  --h2-letter-spacing: 0px;
+  --h2-line-height: 150%;
+  --h3-font-family: var(--font-poppins), Helvetica;
+  --h3-font-size: 32px;
+  --h3-font-style: normal;
+  --h3-font-weight: 600;
+  --h3-letter-spacing: 0px;
+  --h3-line-height: 129.99999523162842%;
+  --h4-font-family: var(--font-poppins), Helvetica;
+  --h4-font-size: 24px;
+  --h4-font-style: normal;
+  --h4-font-weight: 600;
+  --h4-letter-spacing: 0px;
+  --h4-line-height: 150%;
+  --subheading-b1-medium-font-family: var(--font-poppins), Helvetica;
+  --subheading-b1-medium-font-size: 18px;
+  --subheading-b1-medium-font-style: normal;
+  --subheading-b1-medium-font-weight: 500;
+  --subheading-b1-medium-letter-spacing: 0px;
+  --subheading-b1-medium-line-height: 129.99999523162842%;
+  --subheading-b1-regular-font-family: var(--font-poppins), Helvetica;
+  --subheading-b1-regular-font-size: 18px;
+  --subheading-b1-regular-font-style: normal;
+  --subheading-b1-regular-font-weight: 400;
+  --subheading-b1-regular-letter-spacing: 0px;
+  --subheading-b1-regular-line-height: 150%;
+  --subheading-b1-semibold-font-family: var(--font-poppins), Helvetica;
+  --subheading-b1-semibold-font-size: 18px;
+  --subheading-b1-semibold-font-style: normal;
+  --subheading-b1-semibold-font-weight: 600;
+  --subheading-b1-semibold-letter-spacing: 0px;
+  --subheading-b1-semibold-line-height: 129.99999523162842%;
+  --x-0f-1538: rgba(15, 21, 56, 1);
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0px;
+  height: 100%;
+  font-family: var(--font-poppins), Helvetica, sans-serif;
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+/* a blue color as a generic focus style */
+button:focus-visible {
+  outline: 2px solid #4a90e2 !important;
+  outline: -webkit-focus-ring-color auto 5px !important;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Primary color utilities */
+.bg-primary-500 {
+  background-color: var(--collor-style-primary-500);
+}
+
+.bg-primary-400 {
+  background-color: var(--collor-style-primary-400);
+}
+
+.text-primary-500 {
+  color: var(--collor-style-primary-500);
+}
+
+.border-primary-500 {
+  border-color: var(--collor-style-primary-500);
+}
+
+.hover\:bg-primary-500:hover {
+  background-color: var(--collor-style-primary-500);
+}
+
+.hover\:bg-primary-400:hover {
+  background-color: var(--collor-style-primary-400);
+}
+
+.hover\:text-white:hover {
+  color: white;
+}
+
+/* Tertiary color utilities */
+.text-tertiary-300 {
+  color: var(--collor-style-tertiary-300);
+}
+
+/* Additional utility classes for About Us and Why Gaussian sections */
+.text-gray-900 {
+  color: #111112;
+}
+
+.text-gray-600 {
+  color: #49525B;
+}
+
+.text-gray-500 {
+  color: #6B7280;
+}
+
+.text-gray-700 {
+  color: #374151;
+}
+
+.bg-gray-50 {
+  background-color: #F5F7FA;
+}
+
+.border-gray-300 {
+  border-color: #C8CDD3;
+}
+
+.border-gray-200 {
+  border-color: #E5E7EB;
+}
+
+.text-blue-600 {
+  color: #1065E5;
+}
+
+.bg-blue-600 {
+  background-color: #1065E5;
+}
+
+.hover\:bg-blue-700:hover {
+  background-color: #0B4BC7;
+}
+
+.bg-blue-50 {
+  background-color: #EFF6FF;
+}
+
+.bg-green-50 {
+  background-color: #F0FDF4;
+}
+
+.bg-indigo-50 {
+  background-color: #EEF2FF;
+}
+
+.text-green-600 {
+  color: #059669;
+}
+
+/* Custom gradient backgrounds */
+.bg-gradient-to-b {
+  background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
+}
+
+.bg-gradient-to-r {
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+}
+
+.from-white {
+  --tw-gradient-from: #ffffff;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+}
+
+.to-gray-50 {
+  --tw-gradient-to: #F5F7FA;
+}
+
+.from-transparent {
+  --tw-gradient-from: transparent;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(0, 0, 0, 0));
+}
+
+.to-white {
+  --tw-gradient-to: #ffffff;
+}
+
+.from-blue-50 {
+  --tw-gradient-from: #EFF6FF;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(239, 246, 255, 0));
+}
+
+.from-green-50 {
+  --tw-gradient-from: #F0FDF4;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(240, 253, 244, 0));
+}
+
+.to-indigo-50 {
+  --tw-gradient-to: #EEF2FF;
+}
+
+/* Smooth animation utilities */
+.hover\:scale-102:hover {
+  transform: scale(1.02);
+}
+
+.hover\:scale-105:hover {
+  transform: scale(1.05);
+}
+
+/* Custom animations */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Smooth border animation for cards */
+.card-hover-border {
+  border-left: 2px solid transparent;
+  transition: border-left 0.3s ease-in-out;
+}
+
+.card-hover-border:hover {
+  border-left: 2px solid #1065E5;
+}
+
+/* Custom scrollbar styles */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  /* Hide scrollbar for horizontal scroll */
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;  /* Safari and Chrome */
+  }
 }
