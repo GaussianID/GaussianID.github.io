@@ -50,16 +50,35 @@ jobs:
     - name: Install dependencies
       run: pnpm install --frozen-lockfile
 
+    - name: Clean config conflicts
+      run: |
+        # Remove any conflicting next.config.js if it exists
+        if [ -f "next.config.js" ]; then
+          echo "Removing conflicting next.config.js"
+          rm next.config.js
+        fi
+        # Ensure we're using the TypeScript config
+        echo "Using next.config.ts:"
+        cat next.config.ts
+
     - name: Build project
       env:
         NODE_ENV: production
       run: |
         echo "Starting Next.js build..."
+        echo "Next.js version:"
+        npx next --version
+        echo "Node version:"
+        node --version
+        echo "Current config:"
+        cat next.config.ts
         pnpm run build
         echo "Build completed. Checking build output..."
         ls -la
         if [ ! -d "out" ]; then
           echo "ERROR: out directory was not created!"
+          echo "Checking .next directory:"
+          ls -la .next/
           exit 1
         fi
         echo "✓ Build successful - out directory created"
