@@ -109,6 +109,7 @@ export default function Whitepaper() {
                       ${paper.available ? 'bg-[#2261B6] cursor-pointer hover:opacity-90 transition-opacity' : 'bg-[#DFB400]'}
                     `}
                     onClick={() => handleImageClick(paper)}
+                    title={paper.available ? "Download PDF" : ""}
                   >
                     <Image
                       src={paper.thumbnail}
@@ -137,14 +138,21 @@ export default function Whitepaper() {
                     
                     {/* PDF Status - Fixed height */}
                     <div className=" mb-4">
-                      <div className="flex flex-row justify-left items-center gap-2">
+                      <div 
+                        className={`
+                          flex flex-row justify-left items-center gap-2
+                          ${paper.available ? 'cursor-pointer hover:opacity-80' : 'cursor-default'}
+                        `}
+                        onClick={() => paper.available && handleDownload(paper.downloadLink, paper.title)}
+                        title={paper.available ? "Download PDF" : ""}
+                      >
                         <Image
                           src="/img/icon-pdf.svg"
                           alt="PDF Icon"
                           width={16}
                           height={16}
                           className={`
-                            ${paper.available ? "opacity-100" : "opacity-50"}
+                            ${paper.available ? "opacity-100" : "opacity-50 grayscale"}
                           `}
                         />
                         <span className={`
