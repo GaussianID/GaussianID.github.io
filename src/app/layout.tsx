@@ -14,6 +14,9 @@ export const metadata: Metadata = {
   description: "Gaussian empowers enterprises in finance, HR, supply chain, and strategy with real-time insights, automated processes, and autonomous threat defense. By combining LLM-driven digital twin technology with cyber protection, it helps safeguard critical systems while optimizing complex operations.",
   keywords: "AI, Digital Twin, Cybersecurity, LLM, Automation, Enterprise, Finance, Banking",
   authors: [{ name: "Gaussian" }],
+  icons: {
+    icon: '/favicon.svg', // Path ke favicon Anda
+  },
 };
 
 export const viewport: Viewport = {
