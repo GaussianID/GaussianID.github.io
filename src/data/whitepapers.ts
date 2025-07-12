@@ -160,7 +160,7 @@ export const whitepapers: Whitepaper[] = [
     available: true,
     lastUpdated: "Last Updated: June 16, 2025",
     thumbnail: "/whitepaper/Water & Wastewater Treatment.png",
-    downloadLink: "https://drive.google.com/uc?export=download&id=1V6QRfS4st9gSqC2JD9dMYORYk8R-gwvD"
+    downloadLink: "https://drive.google.com/uc?export=download&id=1sKFwrFX3pBafcOmlkxkgkmhR1DUqGNwE"
   },
   {
     id: 18,
@@ -169,6 +169,6 @@ export const whitepapers: Whitepaper[] = [
     available: true,
     lastUpdated: "Last Updated: June 16, 2025",
     thumbnail: "/whitepaper/Telecommunications Network Management.png",
-    downloadLink: "https://drive.google.com/uc?export=download&id=1MGm_xDpsFPrtOaGDSRHImqHVlZj5eiCn"
+    downloadLink: "https://drive.google.com/uc?export=download&id=1Y-JObgG5oAwPHQNyYs8TxAAJUCF4eY6f"
   }
 ]; 
