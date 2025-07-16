@@ -170,5 +170,14 @@ export const whitepapers: Whitepaper[] = [
     lastUpdated: "Last Updated: June 16, 2025",
     thumbnail: "/whitepaper/Telecommunications Network Management.png",
     downloadLink: "https://drive.google.com/uc?export=download&id=1Y-JObgG5oAwPHQNyYs8TxAAJUCF4eY6f"
+  },
+  {
+    id: 19,
+    title: "Tement",
+    description: "Telcos stream KPI alarms, traffic loads, and power metrics. Fault‑diagnosis LLMs, capacity‑planning LLMs, and energy‑optimisation LLMs collaborate in GaussFlow. A network‑simulation core in GaussOS tests hand‑over and QoS impacts before pushing configurations to eNodeBs or routers.",
+    available: true,
+    lastUpdated: "Last Updated: June 16, 2025",
+    thumbnail: "/whitepaper/Telecommunications Network Management.png",
+    downloadLink: "https://drive.google.com/uc?export=download&id=1Y-JObgG5oAwPHQNyYs8TxAAJUCF4eY6f"
   }
 ]; 
