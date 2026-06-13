@@ -6,6 +6,7 @@ import { Calendar, MessageSquareText, MoveRight, ChevronLeft, ChevronRight, Chec
 import { NavBar } from "@/components/NavBar";
 import { Button } from "@/components/Button";
 import { Footer } from "@/components/Footer";
+import { Reveal } from "@/components/Reveal";
 
 export default function Home() {
   const [currentProductIndex, setCurrentProductIndex] = useState(0);
@@ -263,7 +264,7 @@ export default function Home() {
         {/* Background Pattern - removed for cleaner look */}
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-16 py-4 md:py-12  flex items-center">
-          <div className="text-center space-y-8 w-full">
+          <Reveal className="text-center space-y-8 w-full">
             {/* Main Heading */}
             <div className="space-y-6">
               <h1 className="text-2xl md:text-6xl font-semibold text-primary-500 leading-tight max-w-5xl mx-auto drop-shadow-sm">
@@ -304,7 +305,7 @@ export default function Home() {
                 primary={<MessageSquareText size={20} className="current-color" />}
               />
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
 
@@ -354,7 +355,7 @@ export default function Home() {
         {/* Why Gaussian Section - Updated based on Figma design */}
         <div className="py-12 px-4 md:px-[70px] bg-gradient-to-b from-white to-white min-h-[700px] md:min-h-[600px]">
           <div className="flex flex-col items-center gap-9 max-w-6xl mx-auto">
-            <h2 className="text-[#0B1F3A] text-2xl md:text-[32px] font-semibold text-center">Why Gaussian</h2>
+            <Reveal as="h2" className="text-[#0B1F3A] text-2xl md:text-[32px] font-semibold text-center">Why Gaussian</Reveal>
             
             <div className="flex flex-col gap-4 md:flex-row md:gap-12 w-full">
               {/* Left Side - Challenge with nested Solution */}
@@ -489,13 +490,13 @@ export default function Home() {
                   </div>
 
         {/* Our Product Suite Section - Redesigned based on Figma */}
-        <div className="py-12 px-4 md:px-16 bg-[#F5F7FA] h-[600px] md:h-[680px] flex items-center">
+        <div className="py-12 md:py-16 px-4 md:px-16 bg-[#F5F7FA] flex items-center">
           <div className="flex flex-col items-center gap-9 max-w-7xl mx-auto">
-            <h2 className="text-[#174078] text-2xl md:text-[32px] font-semibold text-center">Our Product Suite</h2>
+            <Reveal as="h2" className="text-[#174078] text-2xl md:text-[32px] font-semibold text-center">Our Product Suite</Reveal>
             
             <div className="flex flex-col md:flex-row justify-center gap-9 w-full">
               {/* Left Side - Product Image (hidden on mobile) */}
-              <div className="hidden md:block w-[621px] h-[530px] rounded-lg overflow-hidden">
+              <div className="hidden md:block w-full max-w-[621px] aspect-[621/530] rounded-lg overflow-hidden">
                   <Image
                     src={products[currentProductIndex].image}
                     alt={products[currentProductIndex].title}
@@ -575,7 +576,7 @@ export default function Home() {
         {/* How It Works Section */}
         <div className="py-12 px-4 md:px-16 bg-white">
           <div className="flex flex-col items-center gap-9 max-w-7xl mx-auto">
-            <h2 className="text-[#0B1F3A] text-2xl md:text-[32px] font-semibold text-center">How It Works</h2>
+            <Reveal as="h2" className="text-[#0B1F3A] text-2xl md:text-[32px] font-semibold text-center">How It Works</Reveal>
             
             {/* Mobile: Horizontal scroll, Desktop: 3 top + 2 bottom grid */}
             <div className="w-full">
@@ -584,7 +585,7 @@ export default function Home() {
                 {workflowSteps.map((step, index) => (
                   <div
                     key={index}
-                    className="bg-[#F5F7FA] rounded-lg p-6 shadow-md flex-shrink-0 w-[323px] h-[221px] flex flex-col gap-3 justify-center items-start"
+                    className="bg-[#F5F7FA] rounded-lg p-6 shadow-md flex-shrink-0 w-[280px] sm:w-[323px] min-h-[221px] flex flex-col gap-3 justify-center items-start"
                     style={{ boxShadow: '0px 1px 10px 0px rgba(0, 0, 0, 0.12), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 2px 4px 0px rgba(0, 0, 0, 0.2)' }}
                   >
                     <h3 className="text-[#111112] text-base font-medium leading-tight">
@@ -600,11 +601,11 @@ export default function Home() {
               {/* Desktop Layout - 3 top + 2 bottom */}
               <div className="hidden md:flex flex-col gap-7 items-center pt-1">
                 {/* Top Row - 3 cards */}
-                <div className="flex gap-7 justify-center">
+                <div className="flex flex-wrap gap-7 justify-center w-full">
                 {workflowSteps.slice(0, 3).map((step, index) => (
-                  <div
-                    key={index}
-                      className="bg-[#F5F7FA] rounded-lg p-7 shadow-md w-[330px] h-[221px] flex flex-col gap-[14px] justify-center items-start"
+                  <Reveal key={index} delay={index * 100} className="flex-1 min-w-[280px] max-w-[330px]">
+                    <div
+                      className="h-full bg-[#F5F7FA] rounded-lg p-7 shadow-md min-h-[221px] flex flex-col gap-[14px] justify-center items-start transition-transform duration-300 hover:-translate-y-1"
                       style={{ boxShadow: '0px 1px 10px 0px rgba(0, 0, 0, 0.12), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 2px 4px 0px rgba(0, 0, 0, 0.2)' }}
                     >
                       <h3 className="text-[#111112] text-lg font-medium leading-tight">
@@ -613,16 +614,17 @@ export default function Home() {
                       <p className="text-[#0F1538] text-sm leading-relaxed opacity-70">
                         {step.description}
                       </p>
-                  </div>
+                    </div>
+                  </Reveal>
                 ))}
                     </div>
 
                 {/* Bottom Row - 2 cards */}
-                <div className="flex gap-7 justify-center">
+                <div className="flex flex-wrap gap-7 justify-center w-full">
                 {workflowSteps.slice(3, 5).map((step, index) => (
-                  <div
-                    key={index + 3}
-                      className="bg-[#F5F7FA] rounded-lg p-7 shadow-md w-[330px] h-[221px] flex flex-col gap-[14px] justify-center items-start"
+                  <Reveal key={index + 3} delay={index * 100} className="flex-1 min-w-[280px] max-w-[330px]">
+                    <div
+                      className="h-full bg-[#F5F7FA] rounded-lg p-7 shadow-md min-h-[221px] flex flex-col gap-[14px] justify-center items-start transition-transform duration-300 hover:-translate-y-1"
                       style={{ boxShadow: '0px 1px 10px 0px rgba(0, 0, 0, 0.12), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 2px 4px 0px rgba(0, 0, 0, 0.2)' }}
                     >
                       <h3 className="text-[#111112] text-lg font-medium leading-tight">
@@ -631,7 +633,8 @@ export default function Home() {
                       <p className="text-[#0F1538] text-sm leading-relaxed opacity-70">
                         {step.description}
                       </p>
-                  </div>
+                    </div>
+                  </Reveal>
                 ))}
                 </div>
                       </div>
@@ -641,7 +644,7 @@ export default function Home() {
 
         {/* Use Cases Section */}
         <div className="bg-[#0B1F3A] px-4 md:px-0">
-          <div className="flex flex-col md:flex-row max-w-7xl mx-auto min-h-[600px] md:h-[600px]">
+          <div className="flex flex-col md:flex-row max-w-7xl mx-auto md:min-h-[600px]">
             {/* Left Side - Title, Image and Navigation */}
             <div className="py-12 flex-1 flex flex-col gap-4 md:gap-0">
               {/* Title Section */}
@@ -726,15 +729,15 @@ export default function Home() {
                     </div>
 
         {/* Implementation Roadmap Section */}
-        <section className="py-16 px-4 md:px-16 bg-[#F5F7FA] h-[800px] md:h-screen flex items-center">
+        <section className="py-16 px-4 md:px-16 bg-[#F5F7FA] flex items-center">
           <div className="max-w-7xl mx-auto">
             <div className="mb-9">
-              <h2 className="text-[#1065E5] text-2xl md:text-[32px] font-semibold">Implementation Roadmap</h2>
+              <Reveal as="h2" className="text-[#1065E5] text-2xl md:text-[32px] font-semibold">Implementation Roadmap</Reveal>
                         </div>
             
             <div className="flex flex-col md:flex-row justify-between gap-7 md:gap-[105px]">
               {/* Left Side - Accordion Phases */}
-              <div className="flex-1 max-w-full md:max-w-[749px] flex flex-col gap-4 md:gap-[14px] h-auto md:h-[466px]">
+              <div className="flex-1 max-w-full md:max-w-[749px] flex flex-col gap-4 md:gap-[14px]">
                 {[
                   {
                     phase: "Phase 1",
@@ -847,8 +850,8 @@ export default function Home() {
               </div>
 
               {/* Right Side - Static Image */}
-              <div className="hidden md:block flex-shrink-0">
-                <div className="w-[436px] h-[466px] rounded-lg overflow-hidden">
+              <div className="hidden md:block flex-shrink-0 w-full max-w-[436px]">
+                <div className="w-full aspect-[436/466] rounded-lg overflow-hidden">
                   <Image
                     src="/img/frame-1171275575-1.png"
                     alt="Implementation Roadmap Visualization"
@@ -867,7 +870,7 @@ export default function Home() {
           <div className="max-w-full mx-auto flex justify-center">
             <div className="max-w-full">
               <div className="bg-gradient-to-b from-white to-[#EFF5F9] rounded-2xl p-6 md:p-12 shadow-lg">
-                <div className="flex flex-col items-center gap-7 text-center">
+                <Reveal className="flex flex-col items-center gap-7 text-center">
                   <h2 className="text-[#111112] text-2xl md:text-[32px] font-semibold leading-[1.3]">
                     Protect Your Systems with Automated and Secured Digital-Twin Agents
                   </h2>
@@ -892,7 +895,7 @@ export default function Home() {
                       className="border-2 border-[#0B1F3A] text-[#0B1F3A] hover:bg-[#0B1F3A] hover:text-white px-4 py-3 w-full md:w-auto"
                     />
                   </div>
-                </div>
+                </Reveal>
               </div>
             </div>
           </div>
@@ -924,16 +927,16 @@ export default function Home() {
           </div>
           
           <div className="max-w-6xl mx-auto relative z-10">
-            <div className="text-center mb-16">
+            <Reveal className="text-center mb-16">
               <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4">Pricing & Business Model</h2>
-            </div>
+            </Reveal>
             
             <div className="flex flex-col lg:flex-row gap-8 items-start justify-center">
               {/* Pricing Cards Container - Side by side with horizontal scroll */}
               <div className="w-full lg:w-auto overflow-x-auto scrollbar-hide">
                 <div className="flex gap-6 items-center min-w-max">
                   {/* SaaS Subscription Card */}
-                  <div className="w-[336px] bg-white border border-gray-200 rounded-lg p-8 shadow-lg flex-shrink-0">
+                  <div className="w-[336px] bg-white border border-gray-200 rounded-lg p-8 shadow-lg flex-shrink-0 transition-transform duration-300 hover:-translate-y-1">
                     <div className="mb-6">
                       <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">SaaS Subscription</h3>
                       <span className="inline-block text-gray-600 text-sm rounded-full">Coming Soon</span>
@@ -952,7 +955,7 @@ export default function Home() {
                   </div>
 
                   {/* PaaS Subscription Card - Staggered */}
-                  <div className="w-[336px] bg-[#0B1F3A] border-2 border-[#1065E5] rounded-lg p-8 shadow-lg mt-0 md:mt-12 flex-shrink-0">
+                  <div className="w-[336px] bg-[#0B1F3A] border-2 border-[#1065E5] rounded-lg p-8 shadow-lg mt-0 md:mt-12 flex-shrink-0 transition-transform duration-300 hover:-translate-y-1">
                     <div className="mb-6">
                       <h3 className="text-xl md:text-2xl font-bold text-white mb-2">PaaS Subscription</h3>
                       <span className="inline-block text-[#909BA6] text-sm rounded-full">

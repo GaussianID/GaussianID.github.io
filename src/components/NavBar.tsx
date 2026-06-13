@@ -71,7 +71,7 @@ const ActionButton: React.FC<{
   variant,
   isScrolled = false,
 }) => {
-  const baseClasses = "px-4 py-3 text-sm font-medium rounded-lg transition-colors duration-200 focus:outline-none";
+  const baseClasses = "px-3 xl:px-4 py-2.5 text-sm font-medium rounded-lg whitespace-nowrap transition-all duration-200 focus:outline-none hover:-translate-y-0.5";
   
   const variantClasses = variant === "primary" 
     ? `bg-blue-600 text-white hover:bg-blue-700 ${isScrolled ? 'hover:bg-blue-500' : ''}` 
@@ -135,7 +135,7 @@ export const NavBar: React.FC<NavBarProps> = ({
           ${className}
         `}
       >
-        <nav className="px-4 md:px-[70px]">
+        <nav className="px-4 lg:px-[70px]">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <Link 
@@ -154,7 +154,7 @@ export const NavBar: React.FC<NavBarProps> = ({
             </Link>
 
             {/* Navigation Links - Desktop */}
-            <div className="hidden md:flex items-center space-x-8 flex-1 justify-center">
+            <div className="hidden lg:flex items-center gap-4 xl:gap-8 flex-1 justify-center">
               <NavButton
                 text="Home"
                 to="/"
@@ -188,7 +188,7 @@ export const NavBar: React.FC<NavBarProps> = ({
             </div>
 
             {/* Action Buttons - Desktop */}
-            <div className="hidden md:flex items-center space-x-3">
+            <div className="hidden lg:flex items-center gap-2 xl:gap-3">
               <ActionButton
                 text="Try Gaussian Free"
                 to="/contact-us?reason=try"
@@ -204,7 +204,7 @@ export const NavBar: React.FC<NavBarProps> = ({
             </div>
 
             {/* Mobile Right Side - Try Gaussian + Menu Button */}
-            <div className="md:hidden flex items-center gap-[14px]">
+            <div className="lg:hidden flex items-center gap-[14px]">
               {/* Try Gaussian Button - Mobile */}
               <Link
                 href="/contact-us?reason=try"
@@ -238,8 +238,8 @@ export const NavBar: React.FC<NavBarProps> = ({
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div 
-          className="fixed inset-0 z-40 md:hidden transition-opacity duration-200 ease-out"
+        <div
+          className="fixed inset-0 z-40 lg:hidden transition-opacity duration-200 ease-out"
           onClick={closeMobileMenu}
         />
       )}
@@ -247,7 +247,7 @@ export const NavBar: React.FC<NavBarProps> = ({
       {/* Mobile Menu */}
       <div 
         className={`
-          fixed top-0 left-0 right-0 z-50 bg-[#F5F7FA] shadow-lg transform transition-all duration-200 ease-out md:hidden
+          fixed top-0 left-0 right-0 z-50 bg-[#F5F7FA] shadow-lg transform transition-all duration-200 ease-out lg:hidden
           ${isMobileMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}
         `}
         style={{

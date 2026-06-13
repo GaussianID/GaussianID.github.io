@@ -3,8 +3,8 @@
 import React, { useEffect, useRef, useState, Suspense } from "react";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-import { NavBar } from "../../components/NavBar";
-import { Footer } from "../../components/Footer";
+import { NavBar } from "@/components/NavBar";
+import { Footer } from "@/components/Footer";
 import { Mail, Phone, ArrowUpRight } from "lucide-react";
 
 // Separate component that uses useSearchParams
@@ -16,6 +16,7 @@ function ContactForm() {
   const [email, setEmail] = useState("");
   const [company, setCompany] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
   const [errors, setErrors] = useState({
     name: "",
     email: "",
@@ -58,14 +59,15 @@ function ContactForm() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+    setSubmitStatus("idle");
+
     // Reset errors
     setErrors({
       name: "",
       email: "",
       message: ""
     });
-    
+
     // Validate required fields
     let hasErrors = false;
     const newErrors = {
@@ -73,29 +75,29 @@ function ContactForm() {
       email: "",
       message: ""
     };
-    
+
     if (!name.trim()) {
-      newErrors.name = "Nama wajib diisi";
+      newErrors.name = "Name is required";
       hasErrors = true;
     }
-    
+
     if (!email.trim()) {
-      newErrors.email = "Email wajib diisi";
+      newErrors.email = "Email is required";
       hasErrors = true;
     } else {
       // Email format validation
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(email.trim())) {
-        newErrors.email = "Format email tidak valid. Contoh: nama@domain.com";
+        newErrors.email = "Invalid email format. Example: name@domain.com";
         hasErrors = true;
       }
     }
-    
+
     if (!message.trim()) {
-      newErrors.message = "Pesan wajib diisi";
+      newErrors.message = "Message is required";
       hasErrors = true;
     }
-    
+
     if (hasErrors) {
       setErrors(newErrors);
       setIsSubmitting(false);
@@ -105,7 +107,7 @@ function ContactForm() {
       }
       return;
     }
-    
+
     // Create email content
     const subject = `Contact Form Submission from ${name}`;
     const body = `
@@ -119,20 +121,17 @@ ${message}
 ---
 This message was sent from the Gaussian contact form.
     `.trim();
-    
+
     // Create mailto link
     const mailtoLink = `mailto:contact@gaussian.au?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    
-    // Open email client
+
+    // Open the user's email client
     try {
       window.location.href = mailtoLink;
-      // Show success message
-      setTimeout(() => {
-        alert('Email client akan terbuka. Silakan kirim email dari aplikasi email Anda.');
-        setIsSubmitting(false);
-      }, 1000);
+      setSubmitStatus("success");
     } catch {
-      alert('Terjadi kesalahan saat membuka email client. Pastikan Anda memiliki aplikasi email yang terpasang.');
+      setSubmitStatus("error");
+    } finally {
       setIsSubmitting(false);
     }
   };
@@ -170,7 +169,7 @@ This message was sent from the Gaussian contact form.
           {/* Main Content Container - Benefits + Contact Section */}
           <div className="flex flex-col gap-7 md:gap-12 w-full max-w-7xl">
             {/* Benefits Cards */}
-            <div className="bg-gradient-to-b from-white to-[#EFF5F9] border border-[#1065E5] rounded-md md:rounded-md flex flex-col md:flex-row gap-1 md:gap-10 p-[14px] md:p-7 w-full">
+            <div className="bg-gradient-to-b from-white to-[#EFF5F9] border border-[#1065E5] rounded-md flex flex-col md:flex-row gap-4 md:gap-10 p-[14px] md:p-7 w-full">
               {/* Card 1 */}
               <div className="flex flex-col gap-2 md:gap-[14px] flex-1 pb-[14px] md:pb-0 md:pr-7 border-b md:border-b-0 md:border-r border-[#5E6975]">
                 <h3 className="text-sm md:text-[18px] font-semibold md:font-medium text-[#111112] leading-[1.3]">
@@ -203,10 +202,33 @@ This message was sent from the Gaussian contact form.
             </div>
 
             {/* Contact Form and Info Section */}
-            <div className="flex flex-col md:flex-row gap-7 w-full">
+            <div className="flex flex-col lg:flex-row gap-7 w-full">
               {/* Contact Form Card */}
-              <div className="bg-gradient-to-b from-white to-[#EFF5F9] rounded-md md:rounded-md border-1 md:border-none border-[#5E6975] flex flex-col justify-between gap-[14px] md:gap-[14px] p-[14px] md:p-7 flex-1 md:flex-[2] min-h-[500px] shadow-lg order-1 md:order-1">
+              <div className="bg-gradient-to-b from-white to-[#EFF5F9] rounded-md border border-[#5E6975] lg:border-none flex flex-col justify-between gap-[14px] p-[14px] md:p-7 flex-1 lg:flex-[2] min-h-[500px] shadow-lg">
                 <form onSubmit={handleSubmit} className="flex flex-col gap-[14px] h-full">
+                  {/* Submission status banner */}
+                  {submitStatus === "success" && (
+                    <div
+                      role="status"
+                      className="rounded border border-green-500 bg-green-50 px-4 py-3 text-sm text-green-700 font-['Poppins']"
+                    >
+                      Your email client should now be opening. Please review and send the
+                      message from your email app to reach us.
+                    </div>
+                  )}
+                  {submitStatus === "error" && (
+                    <div
+                      role="alert"
+                      className="rounded border border-red-500 bg-red-50 px-4 py-3 text-sm text-red-600 font-['Poppins']"
+                    >
+                      We couldn&apos;t open your email client. Please email us directly at{" "}
+                      <a href="mailto:contact@gaussian.au" className="underline">
+                        contact@gaussian.au
+                      </a>
+                      .
+                    </div>
+                  )}
+
                   {/* Form Fields Container */}
                   <div className="flex flex-col gap-[14px] w-full">
                     {/* Name Field Card */}
@@ -294,7 +316,7 @@ This message was sent from the Gaussian contact form.
                       }`}
                     >
                       <span className="text-lg md:text-[18px] font-normal leading-[1.5] font-['Poppins']">
-                        {isSubmitting ? 'Mengirim...' : 'Submit'}
+                        {isSubmitting ? 'Sending...' : 'Submit'}
                       </span>
                       {!isSubmitting && <ArrowUpRight size={24} color="white" />}
                       {isSubmitting && (
@@ -306,9 +328,9 @@ This message was sent from the Gaussian contact form.
               </div>
 
               {/* Contact Info Cards */}
-              <div className="flex flex-col gap-[14px] md:gap-[15px] flex-1 order-2 md:order-2">
+              <div className="flex flex-col gap-[14px] lg:gap-[15px] flex-1">
                 {/* Phone Card */}
-                <div className="bg-white md:bg-[#F5F7FA] border border-[#1065E5] md:border-none rounded-[5px] md:rounded-[10px] flex flex-col justify-center gap-[14px] p-[14px] h-auto md:h-36 shadow-lg">
+                <div className="bg-white lg:bg-[#F5F7FA] border border-[#1065E5] lg:border-none rounded-[5px] lg:rounded-[10px] flex flex-col justify-center gap-[14px] p-[14px] shadow-lg">
                   <div className="flex items-center gap-1">
                     <Phone size={24} color="#0B1F3A" />
                     <h3 className="text-lg md:text-[18px] font-medium text-[#111112] leading-[1.3] font-['Poppins']">Phone</h3>
@@ -323,7 +345,7 @@ This message was sent from the Gaussian contact form.
                 </div>
 
                 {/* Email Card */}
-                <div className="bg-white md:bg-[#F5F7FA] border border-[#1065E5] md:border-none rounded-[5px] md:rounded-[10px] flex flex-col justify-center gap-[14px] p-[14px] h-auto md:h-36 shadow-lg">
+                <div className="bg-white lg:bg-[#F5F7FA] border border-[#1065E5] lg:border-none rounded-[5px] lg:rounded-[10px] flex flex-col justify-center gap-[14px] p-[14px] shadow-lg">
                   <div className="flex items-center gap-1">
                     <Mail size={24} color="#0B1F3A" />
                     <h3 className="text-lg md:text-[18px] font-medium text-[#111112] leading-[1.3] font-['Poppins']">Email</h3>

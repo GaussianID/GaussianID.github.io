@@ -4,6 +4,45 @@
   --font-family-poppins: var(--font-poppins), Helvetica, sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+/* Scroll-reveal: elements fade & rise into place as they enter the viewport */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.reveal-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
 /* Hero Section Background Pattern */
 .hero-pattern {
   background-image: 
@@ -153,14 +192,6 @@
   --background-end-rgb: 255, 255, 255;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
 body {
   margin: 0px;
   height: 100%;
@@ -223,21 +254,19 @@ a {
   color: var(--collor-style-tertiary-300);
 }
 
-/* Additional utility classes for About Us and Why Gaussian sections */
+/*
+ * Brand colour overrides.
+ * These intentionally re-map a handful of Tailwind utilities to the Gaussian
+ * brand palette so existing markup keeps its exact colours. Only the classes
+ * actually used in the app are kept here — prefer adding new colours to the
+ * `@theme` block above rather than extending this list.
+ */
 .text-gray-900 {
   color: #111112;
 }
 
 .text-gray-600 {
   color: #49525B;
-}
-
-.text-gray-500 {
-  color: #6B7280;
-}
-
-.text-gray-700 {
-  color: #374151;
 }
 
 .bg-gray-50 {
@@ -268,25 +297,9 @@ a {
   background-color: #EFF6FF;
 }
 
-.bg-green-50 {
-  background-color: #F0FDF4;
-}
-
-.bg-indigo-50 {
-  background-color: #EEF2FF;
-}
-
-.text-green-600 {
-  color: #059669;
-}
-
-/* Custom gradient backgrounds */
+/* Gradient stops used by the brand gradients (paired with Tailwind's bg-gradient-to-*) */
 .bg-gradient-to-b {
   background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
-}
-
-.bg-gradient-to-r {
-  background-image: linear-gradient(to right, var(--tw-gradient-stops));
 }
 
 .from-white {
@@ -294,34 +307,37 @@ a {
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
 }
 
-.to-gray-50 {
-  --tw-gradient-to: #F5F7FA;
-}
-
-.from-transparent {
-  --tw-gradient-from: transparent;
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(0, 0, 0, 0));
-}
-
 .to-white {
   --tw-gradient-to: #ffffff;
 }
 
-.from-blue-50 {
-  --tw-gradient-from: #EFF6FF;
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(239, 246, 255, 0));
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.from-green-50 {
-  --tw-gradient-from: #F0FDF4;
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(240, 253, 244, 0));
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-in-out;
 }
 
-.to-indigo-50 {
-  --tw-gradient-to: #EEF2FF;
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
-/* Smooth animation utilities */
 .hover\:scale-102:hover {
   transform: scale(1.02);
 }

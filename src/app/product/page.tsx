@@ -3,9 +3,9 @@
 import React from "react";
 import Image from "next/image";
 import { Calendar, MessageSquareText, MoveUpRight } from "lucide-react";
-import { NavBar } from "../../components/NavBar";
-import { Footer } from "../../components/Footer";
-import { Button } from "../../components/Button";
+import { NavBar } from "@/components/NavBar";
+import { Footer } from "@/components/Footer";
+import { Button } from "@/components/Button";
 
 export default function Product() {
   return (

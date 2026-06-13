@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   keywords: "AI, Digital Twin, Cybersecurity, LLM, Automation, Enterprise, Finance, Banking",
   authors: [{ name: "Gaussian" }],
   icons: {
-    icon: '/favicon.svg', // Path ke favicon Anda
+    icon: "/favicon.svg",
   },
 };
 
